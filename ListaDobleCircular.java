@@ -14,12 +14,14 @@ public class ListaDobleCircular {
     public void insertarAlInicio(int dato) {
         Nodo nuevoNodo = new Nodo(dato);
         if (estaVacia()) {
-            head = nuevoNodo;
+            nuevoNodo.siguiente = nuevoNodo;
+            nuevoNodo.anterior = nuevoNodo;
+            head = nuevoNodo; // Actualizar el head al nuevo nodo
         } else {
-            Nodo tail = head.anterior;
+            Nodo ultimo = head.anterior;
             nuevoNodo.siguiente = head;
-            nuevoNodo.anterior = tail;
-            tail.siguiente = nuevoNodo;
+            nuevoNodo.anterior = ultimo;
+            ultimo.siguiente = nuevoNodo;
             head.anterior = nuevoNodo;
             head = nuevoNodo; // Actualizar el head al nuevo nodo
         }
@@ -29,61 +31,67 @@ public class ListaDobleCircular {
     public void insertarAlFinal(int dato) {
         Nodo nuevoNodo = new Nodo(dato);
         if (estaVacia()) {
-            head = nuevoNodo;
+            nuevoNodo.siguiente = nuevoNodo;
+            nuevoNodo.anterior = nuevoNodo;
+            head = nuevoNodo; // Actualizar el head al nuevo nodo
         } else {
-            Nodo tail = head.anterior;
+            Nodo ultimo = head.anterior;
             nuevoNodo.siguiente = head;
-            nuevoNodo.anterior = tail;
-            tail.siguiente = nuevoNodo;
+            nuevoNodo.anterior = ultimo;
+            ultimo.siguiente = nuevoNodo;
             head.anterior = nuevoNodo;
         }
     }
 
     //Eliminar al inicio
-    public boolean eliminarAlInicio() {
+    public void eliminarAlInicio() {
         if (estaVacia()) {
-            return false;
+            System.out.println("Error: lista vacía.");
+            return;
         }
         if (head.siguiente == head) { // Solo un nodo
             head = null;
         } else {
-            Nodo tail = head.anterior;
+            Nodo ultimo = head.anterior;
             head = head.siguiente;
-            head.anterior = tail;
-            tail.siguiente = head;
+            head.anterior = ultimo;
+            ultimo.siguiente = head;
         }
-        return true;
+        return;
     }
 
     //Eliminar al final
-    public boolean eliminarAlFinal() {
+    public void eliminarAlFinal() {
         if (estaVacia()) {
-            return false;
+            System.out.println("Error: lista vacía.");
+            return;
         }
         if (head.siguiente == head) { // Solo un nodo
             head = null;
         } else {
-            Nodo tail = head.anterior;
-            Nodo penultimo = tail.anterior;
+            Nodo ultimo = head.anterior;
+            Nodo penultimo = ultimo.anterior;
             penultimo.siguiente = head;
             head.anterior = penultimo;
         }
-        return true;
+        return;
     }
 
     //Buscar un elemento
-    public boolean buscarElemento(int dato) {
+    public void buscarElemento(int dato) {
         if (estaVacia()) {
-            return false;
+            System.out.println("No encontrado");
+            return;
         }
         Nodo actual = head;
         do {
             if (actual.dato == dato) {
-                return true;
+                System.out.println("Encontrado");
+                return;
             }
             actual = actual.siguiente;
         } while (actual != head);
-        return false;
+        System.out.println("No encontrado");
     }
 
     public void imprimir() {

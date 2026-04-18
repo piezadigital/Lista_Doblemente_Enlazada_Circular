@@ -37,42 +37,28 @@ public class Main {
                 case 1:
                     dato = leerEntero(sc, "Ingrese el dato: ");
                     lista.insertarAlInicio(dato);
-                    System.out.println("Dato insertado al inicio.");
                     lista.imprimir();
                     break;
 
                 case 2:
                     dato = leerEntero(sc, "Ingrese el dato: ");
                     lista.insertarAlFinal(dato);
-                    System.out.println("Dato insertado al final.");
                     lista.imprimir();
                     break;
 
                 case 3:
-                    if (lista.eliminarAlInicio()) {
-                        System.out.println("Elemento eliminado al inicio.");
-                        lista.imprimir();
-                    } else {
-                        System.out.println("La lista está vacía.");
-                    }
+                    lista.eliminarAlInicio();
+                    lista.imprimir();
                     break;
 
                 case 4:
-                    if (lista.eliminarAlFinal()) {
-                        System.out.println("Elemento eliminado al final.");
-                        lista.imprimir();
-                    } else {
-                        System.out.println("La lista está vacía.");
-                    }
+                    lista.eliminarAlFinal();
+                    lista.imprimir();
                     break;
 
                 case 5:
                     dato = leerEntero(sc, "Ingrese el dato: ");
-                    if (lista.buscarElemento(dato)) {
-                        System.out.println("El elemento sí existe en la lista.");
-                    } else {
-                        System.out.println("El elemento no existe en la lista.");
-                    }
+                    lista.buscarElemento(dato);
                     break;
 
                 case 6:
